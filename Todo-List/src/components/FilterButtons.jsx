@@ -1,23 +1,28 @@
 import React from "react";
+import { useState } from "react";
 
-function FilterButtons() {
+function FilterButtons({ currentFilter, onFilterChange }) {
+  const filters = ['all', 'active', 'completed'];
+
+  const handleFilterClick = (filter) => {
+    onFilterChange(filter);
+  };
+
   return (
-    <>
-      <div class="filter-container">
-        <div class="filter-group">
-          <button class="filter-btn active" data-filter="all">
-            All
+    <div className="filter-container">
+      <div className="filter-group">
+        {filters.map(filter => (
+          <button
+            key={filter}
+            className={`filter-btn ${currentFilter === filter ? 'active' : ''}`}
+            onClick={() => handleFilterClick(filter)}
+          >
+            {filter}
           </button>
-          <button class="filter-btn" data-filter="active">
-            Active
-          </button>
-          <button class="filter-btn" data-filter="completed">
-            Completed
-          </button>
-        </div>
+        ))}
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default FilterButtons;

@@ -9,12 +9,12 @@ body {
     Ubuntu, Cantarell, sans-serif;
   background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
   min-height: 100vh;
-  padding: 1rem;
 }
 
 .container {
   max-width: 42rem;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 /* Header Styles */
@@ -95,8 +95,7 @@ body {
 }
 
 .todo-input:focus {
-  ring: 2px solid #2563eb;
-  border-color: transparent;
+  border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
@@ -118,8 +117,7 @@ body {
 
 .priority-select:focus,
 .date-input:focus {
-  ring: 2px solid #2563eb;
-  border-color: transparent;
+  border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
@@ -366,8 +364,7 @@ body {
 }
 
 .edit-input:focus {
-  ring: 2px solid #2563eb;
-  border-color: transparent;
+  border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
