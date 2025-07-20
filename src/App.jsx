@@ -7,17 +7,16 @@ import AddTodoForm from "./components/AddTodoForm";
 import FilterButtons from "./components/FilterButtons";
 import TodoList from "./components/TodoList";
 import Footer from "./components/Footer";
-import config from './config'
+import config from "./config";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
+  const host = config.host;
+  const todosUrl = config.todosUrl;
 
   // ✅ Fetch all todos on load
   useEffect(() => {
-    const host = config.host;
-    const todosUrl = config.todos;
-
     axios
       .get(`${host}${todosUrl}`)
       .then((res) => {
@@ -49,7 +48,7 @@ function App() {
         text: newText, // only change the text, keep everything else
       };
 
-      await axios.put(`${host}${todosUrl}${id}`, updatedTodo);
+      await axios.put(`${host}${todosUrl}/${id}`, updatedTodo);
 
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === id ? updatedTodo : t))
@@ -65,7 +64,7 @@ function App() {
   // ✅ Delete todo using Axios
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`${host}${todosUrl}${id}`);
+      await axios.delete(`${host}${todosUrl}/${id}`);
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     } catch (error) {
       console.error(
@@ -80,7 +79,7 @@ function App() {
     try {
       const todo = todos.find((t) => t.id === id);
       const updated = { ...todo, completed: !todo.completed };
-      await axios.put(`${host}${todosUrl}${id}`, updated);
+      await axios.put(`${host}${todosUrl}/${id}`, updated);
 
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === id ? updated : t))
