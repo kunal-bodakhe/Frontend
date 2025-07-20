@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -33,11 +33,34 @@ function App() {
       dueDate: "2025-07-30",
     },
   ]);
+
+  useEffect(() => {
+    fetch("https://todo-backend-lyf0.onrender.com")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTodos(data);
+      })
+      .catch((err) => console.error("Error fetching todos:", err));
+  }, []);
+
   const [filter, setFilter] = useState("all");
 
   // Todo Operations
   const addTodo = (todo) => {
-    setTodos((prevTodos) => [...prevTodos, todo]);
+    fetch("https://todo-backend-lyf0.onrender.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(todo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // update state with the response from server
+        setTodos((prevTodos) => [...prevTodos, data]);
+      })
+      .catch((err) => {
+        console.error("Failed to add todo:", err);
+      });
   };
 
   const deleteTodo = (id) => {
@@ -69,7 +92,7 @@ function App() {
       <div className="container">
         <Header />
         <Stats todos={todos} />
-        <AddTodoForm onAddTodo={addTodo} />
+        <AddTodoForm addTodo={addTodo} />
         <FilterButtons currentFilter={filter} onFilterChange={changeFilter} />
         <TodoList
           todos={todos}

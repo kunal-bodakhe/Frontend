@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function AddTodoForm() {
+function AddTodoForm({addTodo}) {
   const [newTodo, setNewTodo] = useState("");
   const [priority, setPriority] = useState("medium");
   const [dueDate, setDueDate] = useState("");
@@ -15,7 +15,7 @@ function AddTodoForm() {
         priority: priority,
         dueDate: dueDate,
       };
-      onAddTodo(todo);
+      addTodo(todo);
       setNewTodo("");
       setDueDate("");
     }

@@ -74,7 +74,6 @@ const TodoItem = ({ todo, onToggleComplete, onDeleteTodo, onEditTodo }) => {
                 className="edit-input"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
-                onKeyPress={handleEditKeyPress}
                 autoFocus
               />
               <button className="action-btn save" onClick={handleSaveEdit}>
