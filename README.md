@@ -1,12 +1,61 @@
-# React + Vite
+# Todo Frontend Development Server
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern todo application frontend built for development and demonstration purposes.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before running the development server, ensure you have the following installed:
 
-## Expanding the ESLint configuration
+- **Node.js** (version 14.0 or higher)
+- **npm** (comes with Node.js)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+1. Clone the repository (if applicable):
+   ```bash
+   git clone <repository-url>
+   cd todo-frontend
+   ```
+
+2. Install project dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Install nodemon globally (if not already installed):
+   ```bash
+   npm install -g nodemon
+   ```
+
+## Starting the Development Server
+
+To start the development server with hot-reloading using nodemon:
+
+```bash
+npm run dev
+```
+
+Or directly with nodemon:
+
+```bash
+nodemon index.js
+```
+
+The server will start on `https://todo-backend-production-a371.up.railway.app/todos` by default.
+
+## Available Scripts
+
+- `npm run dev` - Starts the development server with nodemon
+- `npm start` - Starts the server in production mode
+- `npm run build` - Builds the application for production (if applicable)
+
+
+
+
+## Accessing the Application
+
+Once the server is running, open your browser and navigate to:
+
+```
+https://todo-frontend-rose-tau.vercel.app/
+```
