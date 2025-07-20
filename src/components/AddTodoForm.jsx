@@ -1,15 +1,22 @@
 import React from "react";
 import { useState } from "react";
 
-function AddTodoForm({addTodo}) {
+function AddTodoForm({ addTodo }) {
   const [newTodo, setNewTodo] = useState("");
   const [priority, setPriority] = useState("medium");
   const [dueDate, setDueDate] = useState("");
 
   const handleAddTodo = () => {
+    if (!priority) {
+      alert("Please select a due date.");
+      return;
+    }
+    if (!dueDate) {
+      alert("Please select a due date.");
+      return;
+    }
     if (newTodo.trim()) {
       const todo = {
-        id: Date.now(),
         text: newTodo.trim(),
         completed: false,
         priority: priority,
@@ -21,11 +28,6 @@ function AddTodoForm({addTodo}) {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleAddTodo();
-    }
-  };
 
   return (
     <div className="add-todo-form">
@@ -35,8 +37,8 @@ function AddTodoForm({addTodo}) {
           className="todo-input"
           placeholder="Add a new todo..."
           value={newTodo}
+          required
           onChange={(e) => setNewTodo(e.target.value)}
-          onKeyPress={handleKeyPress}
         />
       </div>
 
@@ -44,6 +46,7 @@ function AddTodoForm({addTodo}) {
         <select
           className="priority-select"
           value={priority}
+          required
           onChange={(e) => setPriority(e.target.value)}
         >
           <option value="low">Low Priority</option>
@@ -55,16 +58,17 @@ function AddTodoForm({addTodo}) {
           type="date"
           className="date-input"
           value={dueDate}
+          required
           onChange={(e) => setDueDate(e.target.value)}
         />
 
-        <button className="add-btn" onClick={handleAddTodo}>
+        <button type="submit" className="add-btn" onClick={handleAddTodo}>
           <span>+</span>
           Add Todo
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default AddTodoForm;
