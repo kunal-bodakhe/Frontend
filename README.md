@@ -13,7 +13,7 @@ Before running the development server, ensure you have the following installed:
 
 1. Clone the repository (if applicable):
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kunal-bodakhe/Todo-Frontend
    cd todo-frontend
    ```
 
