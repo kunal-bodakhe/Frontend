@@ -7,6 +7,7 @@ import AddTodoForm from "./components/AddTodoForm";
 import FilterButtons from "./components/FilterButtons";
 import TodoList from "./components/TodoList";
 import Footer from "./components/Footer";
+import config from './config'
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -14,8 +15,11 @@ function App() {
 
   // ✅ Fetch all todos on load
   useEffect(() => {
+    const host = config.host;
+    const todosUrl = config.todos;
+
     axios
-      .get("https://todo-backend-lyf0.onrender.com/todos")
+      .get(`${host}${todosUrl}`)
       .then((res) => {
         setTodos(res.data);
       })
@@ -27,7 +31,7 @@ function App() {
   // ✅ Add todo using Axios
   const addTodo = async (todo) => {
     try {
-      const res = await axios.post("http://localhost:5000/todos", todo);
+      const res = await axios.post(`${host}${todosUrl}`, todo);
       setTodos((prevTodos) => [...prevTodos, res.data]);
     } catch (err) {
       console.error("Failed to add todo:", err);
@@ -45,7 +49,7 @@ function App() {
         text: newText, // only change the text, keep everything else
       };
 
-      await axios.put(`http://localhost:5000/todos/${id}`, updatedTodo);
+      await axios.put(`${host}${todosUrl}${id}`, updatedTodo);
 
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === id ? updatedTodo : t))
@@ -61,7 +65,7 @@ function App() {
   // ✅ Delete todo using Axios
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/todos/${id}`);
+      await axios.delete(`${host}${todosUrl}${id}`);
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     } catch (error) {
       console.error(
@@ -76,7 +80,7 @@ function App() {
     try {
       const todo = todos.find((t) => t.id === id);
       const updated = { ...todo, completed: !todo.completed };
-      await axios.put(`http://localhost:5000/todos/${id}`, updated);
+      await axios.put(`${host}${todosUrl}${id}`, updated);
 
       setTodos((prevTodos) =>
         prevTodos.map((t) => (t.id === id ? updated : t))
