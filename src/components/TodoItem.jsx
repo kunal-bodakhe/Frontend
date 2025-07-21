@@ -12,13 +12,6 @@ const TodoItem = ({ todo, onToggleComplete, onDeleteTodo, onEditTodo }) => {
     return date.toLocaleDateString();
   };
 
-  const isOverdue = (dueDate) => {
-    if (!dueDate) return false;
-    const today = new Date();
-    const due = new Date(dueDate);
-    return due < today && due.toDateString() !== today.toDateString();
-  };
-
   const getPriorityClass = (priority) => {
     return `priority-${priority}`;
   };
@@ -48,12 +41,11 @@ const TodoItem = ({ todo, onToggleComplete, onDeleteTodo, onEditTodo }) => {
     setEditText(todo.text);
   };
 
-  const handleEditKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSaveEdit();
-    } else if (e.key === "Escape") {
-      handleCancelEdit();
-    }
+  const isOverdue = (dueDate) => {
+    if (!dueDate) return false;
+    const today = new Date();
+    const due = new Date(dueDate);
+    return due < today && due.toDateString() !== today.toDateString();
   };
 
   return (
