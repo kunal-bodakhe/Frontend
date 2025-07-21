@@ -15,7 +15,7 @@ function App() {
   const host = config.host;
   const todosUrl = config.todosUrl;
 
-  // ✅ Fetch all todos on load
+  //Fetch all todos
   useEffect(() => {
     axios
       .get(`${host}${todosUrl}`)
@@ -27,7 +27,7 @@ function App() {
       });
   }, []);
 
-  // ✅ Add todo using Axios
+  //Add todo
   const addTodo = async (todo) => {
     try {
       const res = await axios.post(`${host}${todosUrl}`, todo);
@@ -37,7 +37,7 @@ function App() {
     }
   };
 
-  // ✅ Edit todo using Axios
+  // Edit todo
   const editTodo = async (id, newText) => {
     try {
       const todo = todos.find((t) => t.id === id);
@@ -61,7 +61,7 @@ function App() {
     }
   };
 
-  // ✅ Delete todo using Axios
+  // Delete todo
   const deleteTodo = async (id) => {
     try {
       await axios.delete(`${host}${todosUrl}/${id}`);
@@ -74,7 +74,7 @@ function App() {
     }
   };
 
-  // ✅ Toggle completed state using Axios
+  // Toggle completed state 
   const toggleComplete = async (id) => {
     try {
       const todo = todos.find((t) => t.id === id);
